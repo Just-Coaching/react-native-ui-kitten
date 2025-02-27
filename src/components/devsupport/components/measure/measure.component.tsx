@@ -4,13 +4,9 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import React from 'react';
-import {
-  findNodeHandle,
-  UIManager,
-  StatusBar,
-} from 'react-native';
-import { Frame } from './type';
+import React from "react";
+import { findNodeHandle, UIManager, StatusBar } from "react-native";
+import { Frame } from "./type";
 
 export interface MeasureElementProps {
   force?: boolean;
@@ -44,8 +40,9 @@ export type MeasuringElement = React.ReactElement;
  * but `force` property may be used to measure any time it's needed.
  * DON'T USE THIS FLAG IF THE COMPONENT RENDERS FIRST TIME OR YOU KNOW `onLayout` WILL BE CALLED.
  */
-export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringElement => {
-
+export const MeasureElement: React.FC<MeasureElementProps> = (
+  props
+): MeasuringElement => {
   const ref = React.useRef();
 
   const bindToWindow = (frame: Frame, window: Frame): Frame => {
@@ -56,26 +53,36 @@ export const MeasureElement: React.FC<MeasureElementProps> = (props): MeasuringE
     const boundFrame: Frame = new Frame(
       frame.origin.x - window.size.width,
       frame.origin.y,
-      frame.size.width,
-      frame.size.height,
+      Math.floor(frame.size.width),
+      Math.floor(frame.size.height)
     );
 
     return bindToWindow(boundFrame, window);
   };
 
-  const onUIManagerMeasure = (x: number, y: number, w: number, h: number): void => {
+  const onUIManagerMeasure = (
+    x: number,
+    y: number,
+    w: number,
+    h: number
+  ): void => {
     if (!w && !h) {
       measureSelf();
     } else {
-      const originY = props.shouldUseTopInsets ? y + StatusBar.currentHeight || 0 : y;
-      const frame: Frame = bindToWindow(new Frame(x, originY, w, h), Frame.window());
+      const originY = props.shouldUseTopInsets
+        ? y + StatusBar.currentHeight || 0
+        : y;
+      const frame: Frame = bindToWindow(
+        new Frame(x, originY, Math.floor(w), Math.floor(h)),
+        Frame.window()
+      );
       props.onMeasure(frame);
     }
   };
 
   const measureSelf = (): void => {
     const node: number = findNodeHandle(ref.current);
-    UIManager.measureInWindow(node, onUIManagerMeasure);
+    if (node) UIManager.measureInWindow(node, onUIManagerMeasure);
   };
 
   if (props.force) {
