@@ -7,11 +7,7 @@ import {
   ROOT_DIR,
 } from './common';
 
-gulp.task('publish-packages', gulp.series(
-  validate,
-  rebuild,
-  publish,
-));
+gulp.task('publish-packages', gulp.series(validate, rebuild, publish));
 
 function validate(done: GulpCompletionCallback): void {
   execSync('npm run lint', { cwd: ROOT_DIR });

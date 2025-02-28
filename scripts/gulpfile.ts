@@ -4,3 +4,4 @@ import './parse-docs';
 import './publish-docs';
 import './publish-packages';
 import './docs';
+import './publish-components-package';

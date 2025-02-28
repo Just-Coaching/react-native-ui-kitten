@@ -2,8 +2,6 @@
   "name": "ui-kitten",
   "version": "5.3.1",
   "private": true,
-  "license": "MIT",
-  "author": "akveo <contact@akveo.com>",
   "homepage": "https://github.com/akveo/react-native-ui-kitten#readme",
   "repository": "git+https://github.com/akveo/react-native-ui-kitten.git",
   "bugs": {
@@ -26,6 +24,7 @@
     "bump-version": "gulp bump-version && conventional-changelog -i CHANGELOG.md -s",
     "publish-docs": "npm run parse-docs && gulp publish-docs",
     "publish-packages": "gulp publish-packages",
+    "publish-components-package": "gulp publish-components-package",
     "r": "rm -rf node_modules && rm -rf src/showcases/node_modules && rm -rf docs/node_modules && yarn"
   },
   "dependencies": {
