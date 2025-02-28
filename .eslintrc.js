@@ -1,23 +1,21 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: [ '@typescript-eslint' ],
+  plugins: ['@typescript-eslint'],
   overrides: [
     {
-      files: [ '*.ts', '*.tsx' ],
+      files: ['*.ts', '*.tsx'],
       rules: {
-        '@typescript-eslint/no-shadow': [ 'error' ],
+        '@typescript-eslint/no-shadow': ['error'],
         'no-shadow': 'off',
         'no-undef': 'off',
         'react-native/no-raw-text': 'off',
       },
-      extends: [
-        'akveo/react-native:recommended',
-      ],
+      extends: ['akveo/react-native:recommended'],
     },
   ],
   parserOptions: {
-    project: [ './tsconfig.json' ],
+    project: ['./tsconfig.json'],
     sourceType: 'module',
   },
   settings: {
@@ -25,5 +23,5 @@ module.exports = {
       version: '18.0.0',
     },
   },
-  ignorePatterns: ["src/template-js", "src/template-ts"]
+  ignorePatterns: ['src/template-js', 'src/template-ts', 'gulpfile.js'],
 };

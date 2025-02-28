@@ -1,12 +1,13 @@
+/* eslint-disable operator-linebreak */
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-import React from "react";
-import { findNodeHandle, UIManager, StatusBar } from "react-native";
-import { Frame } from "./type";
+import React from 'react';
+import { findNodeHandle, UIManager, StatusBar } from 'react-native';
+import { Frame } from './type';
 
 export interface MeasureElementProps {
   force?: boolean;
@@ -82,7 +83,9 @@ export const MeasureElement: React.FC<MeasureElementProps> = (
 
   const measureSelf = (): void => {
     const node: number = findNodeHandle(ref.current);
-    if (node) UIManager.measureInWindow(node, onUIManagerMeasure);
+    if (node) {
+      UIManager.measureInWindow(node, onUIManagerMeasure);
+    }
   };
 
   if (props.force) {
